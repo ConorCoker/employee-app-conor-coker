@@ -1,7 +1,10 @@
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
+val df = DecimalFormat("#.##")
+
 fun main(args: Array<String>) {
+
 
     println("Pay Slip Printer")
     println(printPayslip())
@@ -28,27 +31,44 @@ fun printPayslip(): String {
     val monthlyBonus = (annualBonus / 12)
     val grossPay = (monthlySalary + (annualBonus / 12))
     val totalDeductions = (monthlyPrsi + monthlyPrsi + cycleToWorkDeduction)
-    val netPay = (grossPay-totalDeductions)
+    val netPay = (grossPay - totalDeductions)
 
     return ("""
                 ------------------------------------------------------------------
                 |                        Monthly Payslip                         |
                 ------------------------------------------------------------------
                 |                                                                |
-                | Employee Name: ${firstName.uppercase()} ${surName.uppercase()} ($gender)  Employee ID: $employeeId  |
+                | Employee Name: ${getFullNameAndTitle()}                        |
                 |                                                                |
                 |                                                                |
                 -----------------------------------------------------------------|                                                     
                 |  Payment Details              Deduction Details                |
                 -----------------------------------------------------------------|                                     
-                |   Salary:${df.format(monthlySalary)}           PAYE:${df.format(monthlyPaye)}      |  
-                |   Bonus:${df.format(monthlyBonus)}             PRSI:${df.format(monthlyPrsi)}          |  
+                |   Salary:${formatToTwoDecimals(monthlySalary)}           PAYE:${formatToTwoDecimals(monthlyPaye)}      |  
+                |   Bonus:${formatToTwoDecimals(monthlyBonus)}             PRSI:${formatToTwoDecimals(monthlyPrsi)}          |  
                 |                                     Cycle to work:$cycleToWorkDeduction|
                 |                                                                |                                                                      
                 ------------------------------------------------------------------
-                |  Gross:${df.format(grossPay)}                    Total Deductions:${df.format(totalDeductions)}                |
+                |  Gross:${formatToTwoDecimals(grossPay)}                    Total Deductions:${formatToTwoDecimals(totalDeductions)}                |
                 ------------------------------------------------------------------
-                |                NET PAY:${df.format(netPay)}                                  |
+                |                NET PAY:${formatToTwoDecimals(netPay)}                                  |
                 ------------------------------------------------------------------
                 ==>>  """)
+}
+
+fun formatToTwoDecimals(doubleToFormat: Double): String {
+    df.roundingMode = RoundingMode.CEILING
+    return df.format(doubleToFormat)
+}
+
+fun getFullNameAndTitle(): String {
+    var title = ""
+
+    if (gender.compareTo('m') == 0) {
+        title = "Mr."
+    } else if (gender.compareTo('f') == 0) {
+        title = "Ms."
+    }
+    return "$title $firstName $surName"
+
 }
