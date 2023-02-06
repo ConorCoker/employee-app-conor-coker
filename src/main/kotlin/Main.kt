@@ -42,42 +42,24 @@ fun menu(): Int {
     return readln().toInt()
 }
 
-fun getPayslip(): String {
-
-    return """
-                ------------------------------------------------------------------
-                |                        Monthly Payslip                         |
-                ------------------------------------------------------------------
-                |                                                                |
-                | Employee Name: ${joe.getFullNameAndTitle()}                        |
-                |                                                                |
-                |                                                                |
-                -----------------------------------------------------------------|                                                     
-                |  Payment Details              Deduction Details                |
-                -----------------------------------------------------------------|                                     
-                |   Salary:${utils.formatToTwoDecimals(joe.getMonthlySalary())}           PAYE:${
-        utils.formatToTwoDecimals(
-            joe.getMonthlyPAYE()
-        )
-    }      |  
-                |   Bonus:${utils.formatToTwoDecimals(joe.getMonthlyBonus())}             PRSI:${
-        utils.formatToTwoDecimals(
-            joe.getMonthlyPRSI()
-        )
-    }          |  
-                |                                     Cycle to work:${joe.cycleToWorkDeduction}|
-                |                                                                |                                                                      
-                ------------------------------------------------------------------
-                |  Gross:${utils.formatToTwoDecimals(joe.getGrossMonthlyPay())}                    Total Deductions:${
-        utils.formatToTwoDecimals(
-            joe.getTotalMonthlyDeductions()
-        )
-    }                |
-                ------------------------------------------------------------------
-                |                NET PAY:${utils.formatToTwoDecimals(joe.getNetMonthlyPay())}                                  |
-                ------------------------------------------------------------------
-                ==>>  """
-}
+fun getPayslip() =
+    """
+        ______________________________________________________________________
+         Monthly Payslip:             ${joe.getFullNameAndTitle()}, ID: ${joe.employeeId}                 
+        ______________________________________________________________________    
+              PAYMENT DETAILS (gross pay: ${utils.formatToTwoDecimals(joe.getGrossMonthlyPay())})                                                                    
+        ______________________________________________________________________
+                   Salary: ${utils.formatToTwoDecimals(joe.getMonthlySalary())}
+                   Bonus:  ${utils.formatToTwoDecimals(joe.getMonthlyBonus())}            
+        ______________________________________________________________________
+              DEDUCTION DETAILS (total Deductions: ${utils.formatToTwoDecimals(joe.getTotalMonthlyDeductions())})      
+        ______________________________________________________________________
+                   PAYE: ${utils.formatToTwoDecimals(joe.getMonthlyPAYE())}                
+                   PRSI: ${utils.formatToTwoDecimals(joe.getMonthlyPRSI())}  
+                   Cycle To Work: ${utils.formatToTwoDecimals(joe.cycleToWorkDeduction/12)}        
+        ______________________________________________________________________
+             NET PAY: ${utils.formatToTwoDecimals(joe.getNetMonthlyPay())} 
+        ______________________________________________________________________"""
 
 
 
