@@ -1,74 +1,64 @@
-import java.math.RoundingMode
-import java.text.DecimalFormat
+val utils = Utils()
 
-val df = DecimalFormat("#.##")
+val joe = Employee(
+    "Joe", "Soap", 'm', 6143, 67543.21, 38.5,
+    5.2, 1450.50, 54.33
+)
 
 fun main(args: Array<String>) {
 
 
-    println("Pay Slip Printer")
-    println(printPayslip())
+    println(joe.getFullNameAndTitle())
+    println("Monthly Salary: ${joe.getMonthlySalary()}")
+    println("Monthly PRSI: ${joe.getMonthlyPRSI()}")
+    println("Monthly PAYE: ${joe.getMonthlyPAYE()}")
+    println("Monthly Gross Pay: ${joe.getGrossMonthlyPay()}")
+    println("Monthly Total Deductions: ${joe.getTotalMonthlyDeductions()}")
+    println("Monthly Net Pay: ${joe.getNetMonthlyPay()}")
+    println(getPayslip())
+
+
 }
 
-val firstName = "Joe"
-val surName = "Soap"
-val gender = 'm'
-val employeeId = 6143
-val grossSalary = 67543.21
-val payePercentage = 38.5
-val prsiPercentage = 5.2
-val annualBonus = 1450.50
-val cycleToWorkDeduction = 54.33
+fun getPayslip(): String {
 
-fun printPayslip(): String {
-
-    val df = DecimalFormat("#.##")
-    df.roundingMode = RoundingMode.CEILING
-
-    val monthlySalary = (grossSalary / 12)
-    val monthlyPrsi = monthlySalary * (prsiPercentage / 100)
-    val monthlyPaye = monthlySalary * (payePercentage / 100)
-    val monthlyBonus = (annualBonus / 12)
-    val grossPay = (monthlySalary + (annualBonus / 12))
-    val totalDeductions = (monthlyPrsi + monthlyPrsi + cycleToWorkDeduction)
-    val netPay = (grossPay - totalDeductions)
-
-    return ("""
+    return """
                 ------------------------------------------------------------------
                 |                        Monthly Payslip                         |
                 ------------------------------------------------------------------
                 |                                                                |
-                | Employee Name: ${getFullNameAndTitle()}                        |
+                | Employee Name: ${joe.getFullNameAndTitle()}                        |
                 |                                                                |
                 |                                                                |
                 -----------------------------------------------------------------|                                                     
                 |  Payment Details              Deduction Details                |
                 -----------------------------------------------------------------|                                     
-                |   Salary:${formatToTwoDecimals(monthlySalary)}           PAYE:${formatToTwoDecimals(monthlyPaye)}      |  
-                |   Bonus:${formatToTwoDecimals(monthlyBonus)}             PRSI:${formatToTwoDecimals(monthlyPrsi)}          |  
-                |                                     Cycle to work:$cycleToWorkDeduction|
+                |   Salary:${utils.formatToTwoDecimals(joe.getMonthlySalary())}           PAYE:${
+        utils.formatToTwoDecimals(
+            joe.getMonthlyPAYE()
+        )
+    }      |  
+                |   Bonus:${utils.formatToTwoDecimals(joe.getMonthlyBonus())}             PRSI:${
+        utils.formatToTwoDecimals(
+            joe.getMonthlyPRSI()
+        )
+    }          |  
+                |                                     Cycle to work:${joe.cycleToWorkDeduction}|
                 |                                                                |                                                                      
                 ------------------------------------------------------------------
-                |  Gross:${formatToTwoDecimals(grossPay)}                    Total Deductions:${formatToTwoDecimals(totalDeductions)}                |
+                |  Gross:${utils.formatToTwoDecimals(joe.getGrossMonthlyPay())}                    Total Deductions:${
+        utils.formatToTwoDecimals(
+            joe.getTotalMonthlyDeductions()
+        )
+    }                |
                 ------------------------------------------------------------------
-                |                NET PAY:${formatToTwoDecimals(netPay)}                                  |
+                |                NET PAY:${utils.formatToTwoDecimals(joe.getNetMonthlyPay())}                                  |
                 ------------------------------------------------------------------
-                ==>>  """)
-}
+                ==>>  """
 
-fun formatToTwoDecimals(doubleToFormat: Double): String {
-    df.roundingMode = RoundingMode.CEILING
-    return df.format(doubleToFormat)
-}
-
-fun getFullNameAndTitle(): String {
-    var title = ""
-
-    if (gender.compareTo('m') == 0) {
-        title = "Mr."
-    } else if (gender.compareTo('f') == 0) {
-        title = "Ms."
-    }
-    return "$title $firstName $surName"
 
 }
+
+
+
+
