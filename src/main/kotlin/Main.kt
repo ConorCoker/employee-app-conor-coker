@@ -1,10 +1,15 @@
 import ie.setu.EmployeeAPI
+import mu.KotlinLogging
 
 val utils = Utils()
 
 var employees = EmployeeAPI()
 
+val logger = KotlinLogging.logger {}
+
+
 fun main(args: Array<String>) {
+    logger.info { "Launching Employee App" }
     start()
 }
 
@@ -45,6 +50,7 @@ fun start() {
 }
 
 fun list() {
+    logger.info { println("Calling findAll() and using lambda to print each employee")}
     employees.findAll().forEach { println(it) }
 }
 
@@ -63,6 +69,7 @@ internal fun getEmployeeById(): Employee? {
 }
 
 fun paySlip() {
+    logger.info { println("Calling getEmployeeById()") }
     val employee = getEmployeeById()
     if (employee != null)
         println(employee.getPayslip())
