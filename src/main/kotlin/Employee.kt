@@ -67,4 +67,8 @@ class Employee(
         ______________________________________________________________________
              NET PAY: ${utils.formatToTwoDecimals(getNetMonthlyPay())} 
         ______________________________________________________________________"""
+
+    override fun toString(): String {
+        return "Employee(firstName='$firstName', surName='$surName', gender=$gender, employeeId=$employeeId, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkDeduction=$cycleToWorkDeduction)"
+    }
 }

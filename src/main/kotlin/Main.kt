@@ -4,14 +4,15 @@ val utils = Utils()
 
 var employees = EmployeeAPI()
 
-fun main(args: Array<String>){
+fun main(args: Array<String>) {
     start()
 }
 
 
 fun menu(): Int {
 
-    print(""" 
+    print(
+        """ 
          |Employee Menu
          |   1. Add Employee
          |   2. List All Employees
@@ -19,31 +20,32 @@ fun menu(): Int {
          |   4. Print Payslip for Employee
          |  -1. Exit
          |       
-         |Enter Option : """.trimMargin())
+         |Enter Option : """.trimMargin()
+    )
     return readln().toInt()
 }
 
 
 fun start() {
-        var input: Int
+    var input: Int
 
-        do {
-            input = menu()
-            when (input) {
-                1 -> add()
-                2 -> list()
-                3 -> search()
-                4 -> paySlip()
-                -99 -> dummyData()
-                -1 -> println("Exiting App")
-                else -> println("Invalid Option")
-            }
-            println()
-        } while (input != -1)
-    }
+    do {
+        input = menu()
+        when (input) {
+            1 -> add()
+            2 -> list()
+            3 -> search()
+            4 -> paySlip()
+            -99 -> dummyData()
+            -1 -> println("Exiting App")
+            else -> println("Invalid Option")
+        }
+        println()
+    } while (input != -1)
+}
 
-fun list(){
-    println(employees.findAll())
+fun list() {
+    employees.findAll().forEach { println(it) }
 }
 
 fun search() {
@@ -56,11 +58,11 @@ fun search() {
 
 internal fun getEmployeeById(): Employee? {
     print("Enter the employee id to search by: ")
-    val employeeID = readLine()!!.toInt()
+    val employeeID = readln().toInt()
     return employees.findOne(employeeID)
 }
 
-fun paySlip(){
+fun paySlip() {
     val employee = getEmployeeById()
     if (employee != null)
         println(employee.getPayslip())
@@ -72,7 +74,7 @@ fun dummyData() {
     employees.create(Employee("Mary", "Quinn", 'f', 0, 75685.41, 40.0, 8.5, 4500.0, 0.0))
 }
 
-fun add(){
+fun add() {
     print("Enter first name: ")
     val firstName = readLine().toString()
     print("Enter surname: ")
@@ -86,11 +88,23 @@ fun add(){
     print("Enter PRSI %: ")
     val prsiPercentage = readLine()!!.toDouble()
     print("Enter Annual Bonus: ")
-    val annualBonus= readLine()!!.toDouble()
+    val annualBonus = readLine()!!.toDouble()
     print("Enter Cycle to Work Deduction: ")
-    val cycleToWorkMonthlyDeduction= readLine()!!.toDouble()
+    val cycleToWorkMonthlyDeduction = readLine()!!.toDouble()
 
-    employees.create(Employee(firstName, surname, gender, 0, grossSalary, payePercentage, prsiPercentage, annualBonus, cycleToWorkMonthlyDeduction))
+    employees.create(
+        Employee(
+            firstName,
+            surname,
+            gender,
+            0,
+            grossSalary,
+            payePercentage,
+            prsiPercentage,
+            annualBonus,
+            cycleToWorkMonthlyDeduction
+        )
+    )
 }
 
 
