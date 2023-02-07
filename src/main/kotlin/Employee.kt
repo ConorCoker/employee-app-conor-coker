@@ -2,7 +2,7 @@ class Employee(
     val firstName: String,
     val surName: String,
     val gender: Char,
-    val employeeId: Int,
+    var employeeId: Int,
     val grossSalary: Double,
     val payePercentage: Double,
     val prsiPercentage: Double,
@@ -48,4 +48,23 @@ class Employee(
     fun getNetMonthlyPay():Double{
         return getGrossMonthlyPay()-getTotalMonthlyDeductions()
     }
+
+    fun getPayslip() =
+        """
+        ______________________________________________________________________
+         Monthly Payslip:             ${getFullNameAndTitle()}, ID: ${employeeId}                 
+        ______________________________________________________________________    
+              PAYMENT DETAILS (gross pay: ${utils.formatToTwoDecimals(getGrossMonthlyPay())})                                                                    
+        ______________________________________________________________________
+                   Salary: ${utils.formatToTwoDecimals(getMonthlySalary())}
+                   Bonus:  ${utils.formatToTwoDecimals(getMonthlyBonus())}            
+        ______________________________________________________________________
+              DEDUCTION DETAILS (total Deductions: ${utils.formatToTwoDecimals(getTotalMonthlyDeductions())})      
+        ______________________________________________________________________
+                   PAYE: ${utils.formatToTwoDecimals(getMonthlyPAYE())}                
+                   PRSI: ${utils.formatToTwoDecimals(getMonthlyPRSI())}  
+                   Cycle To Work: ${utils.formatToTwoDecimals(cycleToWorkDeduction/12)}        
+        ______________________________________________________________________
+             NET PAY: ${utils.formatToTwoDecimals(getNetMonthlyPay())} 
+        ______________________________________________________________________"""
 }
