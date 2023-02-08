@@ -1,18 +1,21 @@
 package models
 
-import utils
+import utils.Utils
 
 class Employee(
-    val firstName: String,
-    val surName: String,
-    val gender: Char,
-    var employeeId: Int,
-    val grossSalary: Double,
-    val payePercentage: Double,
-    val prsiPercentage: Double,
-    val annualBonus: Double,
-    val cycleToWorkDeduction: Double
+    private val firstName: String,
+    private val surName: String,
+    private val gender: Char,
+    private val grossSalary: Double,
+    private val payePercentage: Double,
+    private val prsiPercentage: Double,
+    private val annualBonus: Double,
+    private val cycleToWorkDeduction: Double
 ) {
+
+     var employeeId: Int = -999
+
+    private val utils = Utils()
     fun getFullNameAndTitle(): String {
         var title = ""
 
@@ -73,6 +76,6 @@ class Employee(
         ______________________________________________________________________"""
 
     override fun toString(): String {
-        return "Models.Employee(firstName='$firstName', surName='$surName', gender=$gender, employeeId=$employeeId, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkDeduction=$cycleToWorkDeduction)"
+        return "Employee(firstName='$firstName', surName='$surName', gender=$gender, employeeId=$employeeId, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkDeduction=$cycleToWorkDeduction)"
     }
 }
