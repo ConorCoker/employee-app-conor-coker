@@ -1,5 +1,7 @@
-import ie.setu.EmployeeAPI
+import models.Employee
+import controllers.EmployeeAPI
 import mu.KotlinLogging
+import utils.Utils
 
 val utils = Utils()
 
@@ -9,7 +11,7 @@ val logger = KotlinLogging.logger {}
 
 
 fun main(args: Array<String>) {
-    logger.info { "Launching Employee App" }
+    logger.info { "Launching Models.Employee App" }
     start()
 }
 
@@ -18,11 +20,11 @@ fun menu(): Int {
 
     print(
         """ 
-         |Employee Menu
-         |   1. Add Employee
+         |Models.Employee Menu
+         |   1. Add Models.Employee
          |   2. List All Employees
          |   3. Search Employees 
-         |   4. Print Payslip for Employee
+         |   4. Print Payslip for Models.Employee
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin()

@@ -1,3 +1,7 @@
+package models
+
+import utils
+
 class Employee(
     val firstName: String,
     val surName: String,
@@ -69,6 +73,6 @@ class Employee(
         ______________________________________________________________________"""
 
     override fun toString(): String {
-        return "Employee(firstName='$firstName', surName='$surName', gender=$gender, employeeId=$employeeId, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkDeduction=$cycleToWorkDeduction)"
+        return "Models.Employee(firstName='$firstName', surName='$surName', gender=$gender, employeeId=$employeeId, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkDeduction=$cycleToWorkDeduction)"
     }
 }
