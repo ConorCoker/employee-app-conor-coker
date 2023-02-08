@@ -2,6 +2,7 @@ import models.Employee
 import controllers.EmployeeAPI
 import mu.KotlinLogging
 import utils.Utils
+import java.lang.NumberFormatException
 import java.util.Scanner
 
 val sc = Scanner(System.`in`)
@@ -20,18 +21,30 @@ fun main(args: Array<String>) {
 
 fun menu(): Int {
 
-    print(
-        """ 
+    do {
+        try {
+            print(
+                """ 
          |Employee Menu
          |   1. Add Employee
          |   2. List All Employees
          |   3. Search Employees 
          |   4. Print Payslip for Employee
+         |   5. Update Employee Details
+         |   6. Delete an Employee
+         |   7. Sort Employees By Gross Salary (lowest to highest)
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin()
-    )
-    return readln().toInt()
+            )
+            return readln().toInt()
+        } catch (e: NumberFormatException) {
+            System.err.println("Invalid value received - Please try again: ")
+        }
+
+    } while (true)
+
+
 }
 
 
@@ -45,12 +58,27 @@ fun start() {
             2 -> list()
             3 -> search()
             4 -> paySlip()
+            5 -> updateEmployee()
+            6 -> deleteEmployee()
+            7 -> sortEmployeesBySalary()
             -99 -> dummyData()
             -1 -> println("Exiting App")
             else -> println("Invalid Option")
         }
         println()
     } while (input != -1)
+}
+
+fun sortEmployeesBySalary() {
+    TODO("Not yet implemented")
+}
+
+fun deleteEmployee() {
+    TODO("Not yet implemented")
+}
+
+fun updateEmployee() {
+    TODO("Not yet implemented")
 }
 
 fun list() {
@@ -99,11 +127,6 @@ fun add() {
             util.displayPromptReadDouble("Enter Cycle to Work Deduction: ")
         )
     )
-
-
-
-
-
 
 
 }
