@@ -3,14 +3,14 @@ package models
 import utils.Utils
 
 class Employee(
-    private val firstName: String,
-    private val surName: String,
-    private val gender: Char,
-    private val grossSalary: Double,
-    private val payePercentage: Double,
-    private val prsiPercentage: Double,
-    private val annualBonus: Double,
-    private val cycleToWorkDeduction: Double
+    var firstName: String,
+    var surName: String,
+    var gender: Char,
+    var grossSalary: Double,
+    var payePercentage: Double,
+    var prsiPercentage: Double,
+    var annualBonus: Double,
+    var cycleToWorkDeduction: Double
 ) {
 
      var employeeId: Int = -999

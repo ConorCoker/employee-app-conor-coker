@@ -74,11 +74,27 @@ fun sortEmployeesBySalary() {
 }
 
 fun deleteEmployee() {
-    TODO("Not yet implemented")
+    if (search()?.let { employees.delete(it) } == true) {
+        println("Has been deleted!")
+    }
 }
 
 fun updateEmployee() {
-    TODO("Not yet implemented")
+    val employeeToUpdate = search()
+    if (employeeToUpdate != null) {
+        employees.update(
+            employeeToUpdate,
+            util.displayPromptReadString("Enter first name: "),
+            util.displayPromptReadString("Enter surname: "),
+            util.displayPromptReadChar("Enter gender (m/f): "),
+            util.displayPromptReadDouble("Enter gross salary: "),
+            util.displayPromptReadDouble("Enter PAYE %: "),
+            util.displayPromptReadDouble("Enter PRSI %: "),
+            util.displayPromptReadDouble("Enter Annual Bonus: "),
+            util.displayPromptReadDouble("Enter Cycle to Work Deduction: ")
+        )
+    }
+
 }
 
 fun list() {
@@ -86,12 +102,16 @@ fun list() {
     employees.findAll().forEach { println(it) }
 }
 
-fun search() {
+fun search(): Employee? {
     val employee = getEmployeeById()
-    if (employee == null)
+    return if (employee == null) {
         println("No employee found")
-    else
+        null
+    } else {
         println(employee)
+        employee
+    }
+
 }
 
 internal fun getEmployeeById(): Employee? {
