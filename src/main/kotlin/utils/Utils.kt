@@ -6,7 +6,7 @@ import java.util.*
 
 class Utils {
 
-    val sc = Scanner(System.`in`)
+    private val sc = Scanner(System.`in`)
     fun formatToTwoDecimals(doubleToFormat: Double): String {
 
         val df = DecimalFormat("#.##")

@@ -13,10 +13,10 @@ class Employee(
     var cycleToWorkDeduction: Double
 ) {
 
-     var employeeId: Int = -999
+    var employeeId: Int = -999
 
     private val utils = Utils()
-    fun getFullNameAndTitle(): String {
+    private fun getFullNameAndTitle(): String {
         var title = ""
 
         if (gender.compareTo('m') == 0) {
@@ -32,34 +32,34 @@ class Employee(
         return grossSalary / 12
     }
 
-    fun getMonthlyPRSI(): Double {
+    private fun getMonthlyPRSI(): Double {
         return getMonthlySalary() * (prsiPercentage / 100)
     }
 
-    fun getMonthlyPAYE(): Double {
+    private fun getMonthlyPAYE(): Double {
         return getMonthlySalary() * (payePercentage / 100)
     }
 
-    fun getMonthlyBonus():Double{
+    private fun getMonthlyBonus(): Double {
         return annualBonus / 12
     }
 
-    fun getGrossMonthlyPay(): Double {
+    private fun getGrossMonthlyPay(): Double {
         return getMonthlySalary() + getMonthlyBonus()
     }
 
-    fun getTotalMonthlyDeductions():Double{
-        return getMonthlyPRSI() + getMonthlyPAYE() + (cycleToWorkDeduction/12)
+    private fun getTotalMonthlyDeductions(): Double {
+        return getMonthlyPRSI() + getMonthlyPAYE() + (cycleToWorkDeduction / 12)
     }
 
-    fun getNetMonthlyPay():Double{
-        return getGrossMonthlyPay()-getTotalMonthlyDeductions()
+    private fun getNetMonthlyPay(): Double {
+        return getGrossMonthlyPay() - getTotalMonthlyDeductions()
     }
 
     fun getPayslip() =
         """
         ______________________________________________________________________
-         Monthly Payslip:             ${getFullNameAndTitle()}, ID: ${employeeId}                 
+         Monthly Payslip:             ${getFullNameAndTitle()}, ID: $employeeId                 
         ______________________________________________________________________    
               PAYMENT DETAILS (gross pay: ${utils.formatToTwoDecimals(getGrossMonthlyPay())})                                                                    
         ______________________________________________________________________
@@ -70,12 +70,25 @@ class Employee(
         ______________________________________________________________________
                    PAYE: ${utils.formatToTwoDecimals(getMonthlyPAYE())}                
                    PRSI: ${utils.formatToTwoDecimals(getMonthlyPRSI())}  
-                   Cycle To Work: ${utils.formatToTwoDecimals(cycleToWorkDeduction/12)}        
+                   Cycle To Work: ${utils.formatToTwoDecimals(cycleToWorkDeduction / 12)}        
         ______________________________________________________________________
              NET PAY: ${utils.formatToTwoDecimals(getNetMonthlyPay())} 
         ______________________________________________________________________"""
 
     override fun toString(): String {
-        return "Employee(firstName='$firstName', surName='$surName', gender=$gender, employeeId=$employeeId, grossSalary=$grossSalary, payePercentage=$payePercentage, prsiPercentage=$prsiPercentage, annualBonus=$annualBonus, cycleToWorkDeduction=$cycleToWorkDeduction)"
+        return """
+              ----------------------------------------------
+              Employee $employeeId :
+              First Name: $firstName 
+              Surname: $surName
+              Gender: $gender 
+              Employee Id: $employeeId 
+              Gross Salary: $grossSalary 
+              P.A.Y.E Percentage: $payePercentage 
+              P.R.S.I Percentage: $prsiPercentage 
+              Annual Bonus: $annualBonus 
+              Cycle To Work Deduction: $cycleToWorkDeduction
+              ----------------------------------------------
+        """.trimIndent()
     }
 }

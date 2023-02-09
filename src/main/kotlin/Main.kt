@@ -3,9 +3,7 @@ import controllers.EmployeeAPI
 import mu.KotlinLogging
 import utils.Utils
 import java.lang.NumberFormatException
-import java.util.Scanner
 
-val sc = Scanner(System.`in`)
 val util = Utils()
 
 var employees = EmployeeAPI()
@@ -128,9 +126,9 @@ fun paySlip() {
 }
 
 fun dummyData() {
-//    employees.create(Employee("Joe", "Soap", 'm', 0, 35655.43, 31.0, 7.5, 2000.0, 25.6))
-//    employees.create(Employee("Joan", "Murphy", 'f', 0, 54255.13, 32.5, 7.0, 1500.0, 55.3))
-//    employees.create(Employee("Mary", "Quinn", 'f', 0, 75685.41, 40.0, 8.5, 4500.0, 0.0))
+    employees.create(Employee("Joe", "Soap", 'm', 45000.0, 35655.43, 31.0, 7.5, 2000.0))
+    employees.create(Employee("Joan", "Murphy", 'f', 12000.0, 54255.13, 32.5, 7.0, 1500.0))
+    employees.create(Employee("Mary", "Quinn", 'f', 74000.0, 75685.41, 40.0, 8.5, 4500.0))
 }
 
 fun add() {
