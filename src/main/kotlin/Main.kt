@@ -70,7 +70,7 @@ fun start() {
 }
 
 fun sortEmployeesBySalary() {
-    TODO("Not yet implemented")
+employees.sortBySalary()
 }
 
 fun deleteEmployee() {
